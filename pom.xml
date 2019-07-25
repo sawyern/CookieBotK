@@ -48,9 +48,9 @@
 			<version>3.0.7</version>
 		</dependency>
 		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<version>1.7.26</version>
+			<groupId>io.github.microutils</groupId>
+			<artifactId>kotlin-logging</artifactId>
+			<version>1.7.1</version>
 		</dependency>
 		<dependency>
 			<groupId>com.h2database</groupId>
