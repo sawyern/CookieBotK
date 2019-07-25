@@ -1,0 +1,47 @@
+security:
+  ignored: /**
+
+spring:
+  jpa:
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: true
+app:
+  version: 1.1
+
+---
+server:
+  port: ${PORT}
+spring:
+  profiles: production
+  datasource:
+    url: ${JDBC_DATABASE_URL}
+    username: ${JDBC_DATABASE_USERNAME}
+    password: ${JDBC_DATABASE_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+discord:
+  token: $(PROD_DISCORD_TOKEN)
+  bot-channel-id: 544942649036242964
+
+---
+server:
+  port: ${PORT}
+spring:
+  profiles: dev
+  datasource:
+    url: ${JDBC_DATABASE_URL}
+    username: ${JDBC_DATABASE_USERNAME}
+    password: ${JDBC_DATABASE_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+discord:
+  token: $(DEV_DISCORD_TOKEN)
+  bot-channel-id: 589975110090489907
+
