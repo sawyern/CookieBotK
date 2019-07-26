@@ -12,11 +12,12 @@ import sawyern.cookiebot.commands.BotCommand
 import sawyern.cookiebot.properties.DiscordClientProperties
 
 @Service
-class DiscordService @Autowired constructor(
+class DiscordService @Autowired
+constructor(
         private val discordClientProperties: DiscordClientProperties,
         private val botCommands: List<BotCommand>
 ) {
-    private val discordClient: DiscordClient = DiscordClientBuilder(discordClientProperties.token).build()
+    private val discordClient: DiscordClient by lazy { DiscordClientBuilder(discordClientProperties.token).build() }
     private val logger = KotlinLogging.logger {}
 
     fun subscribeAllCommands() = botCommands.forEach { command -> command.subscribe(discordClient) }

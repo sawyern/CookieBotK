@@ -8,7 +8,8 @@ import org.springframework.stereotype.Component
 import sawyern.cookiebot.services.DiscordService
 
 @Component
-class CookieBotDiscordClient (val discordService: DiscordService) {
+class CookieBotDiscordClient @Autowired
+constructor(val discordService: DiscordService) {
     private val logger = KotlinLogging.logger {}
 
     @EventListener(ApplicationReadyEvent::class)
