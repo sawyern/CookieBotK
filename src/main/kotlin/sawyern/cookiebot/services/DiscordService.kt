@@ -20,17 +20,17 @@ constructor(
     private val discordClient: DiscordClient by lazy { DiscordClientBuilder(discordClientProperties.token).build() }
     private val logger = KotlinLogging.logger {}
 
-    fun subscribeAllCommands() = botCommands.forEach { command -> command.subscribe(discordClient) }
+    internal fun subscribeAllCommands() = botCommands.forEach { command -> command.subscribe(discordClient) }
 
-    fun subscribeReady() {
+    internal fun subscribeReady() {
         discordClient.eventDispatcher
                 .on(ReadyEvent::class.java)
                 .subscribe { logger.info("Logged in as {}", it.self.username) }
     }
 
-    fun login() = discordClient.login().block()
+    internal fun login() = discordClient.login().block()
 
-    fun getBotChannel(): MessageChannel {
+    internal fun getBotChannel(): MessageChannel {
         return discordClient
                 .getChannelById(Snowflake.of(discordClientProperties.botChannelId))
                 .block()

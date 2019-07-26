@@ -31,7 +31,7 @@ abstract class MessageCreateEventBotCommand  @Autowired constructor(
     abstract fun getHelpText(): String
     open fun getAllowedNumArgs(): Set<Int> = LinkedHashSet()
 
-    fun executeCommand(event: MessageCreateEvent) {
+    internal fun executeCommand(event: MessageCreateEvent) {
         try {
             // get text content from message, ignore non-text messages
             val content = event.message.content.orElseThrow { DiscordException("Error getting message content") }
@@ -63,7 +63,7 @@ abstract class MessageCreateEventBotCommand  @Autowired constructor(
         }
     }
 
-    private fun checkValidNumArgs(args: List<String>) {
+    internal fun checkValidNumArgs(args: List<String>) {
         // empty means any number of arguments is okay
         if (getAllowedNumArgs().isEmpty())
             return
@@ -72,9 +72,9 @@ abstract class MessageCreateEventBotCommand  @Autowired constructor(
             throw InvalidCommandArgumentLengthCookieException(getAllowedNumArgs())
     }
 
-    private fun parseArgs(message: String): List<String> {
+    internal fun parseArgs(message: String): List<String> {
         Assert.isTrue(message.isNotEmpty(), AssertMessage.EMPTY_MESSAGE)
-        val splitMessage = botUtilService.splitMessage(message) as LinkedList
+        val splitMessage = LinkedList(botUtilService.splitMessage(message))
 
         // ignore first elt as it is the command, only return list of args
         splitMessage.removeFirst()
@@ -82,7 +82,7 @@ abstract class MessageCreateEventBotCommand  @Autowired constructor(
         return splitMessage
     }
 
-    private fun parseCommand(message: String): String {
+    internal fun parseCommand(message: String): String {
         Assert.isTrue(message.isNotEmpty(), AssertMessage.EMPTY_MESSAGE)
         val command = botUtilService.splitMessage(message)
                 .stream()

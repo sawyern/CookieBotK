@@ -6,6 +6,8 @@ import discord4j.core.event.domain.message.MessageCreateEvent
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.context.annotation.Lazy
+import org.springframework.stereotype.Service
 import org.springframework.util.Assert
 import sawyern.cookiebot.constants.CommandConstants
 import sawyern.cookiebot.exception.AssertMessage
@@ -14,7 +16,8 @@ import sawyern.cookiebot.exception.InvalidNumberParamCookieException
 import java.util.ArrayList
 import java.util.regex.Pattern
 
-class BotUtilService @Autowired constructor(private val discordService: DiscordService) {
+@Service
+class BotUtilService @Autowired constructor(@Lazy private val discordService: DiscordService) {
     private val logger: Logger = LoggerFactory.getLogger(BotUtilService::class.java)
 
     fun sendMessage(message: String): Message? {
@@ -26,6 +29,7 @@ class BotUtilService @Autowired constructor(private val discordService: DiscordS
         var messageObj: Message?
         try {
             messageObj = event.message.channel.block()!!.createMessage(message).block()
+            logger.info("Sending message: $message")
         } catch (e: Exception) {
             logger.error(e.message, e)
             throw CookieException("Error sending message.")
