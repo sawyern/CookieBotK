@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Configuration
 class RegisterConfig {
     val logger = LoggerFactory.getLogger(RegisterConfig::class.java)
 
-    @Before("execution(* sawyern.cookiebot.commands.*.*subscribeCommand(..))")
+    @Before("execution(* sawyern.cookiebot.commands.*.*subscribe(..))")
     fun logRegisterCommand(joinPoint: JoinPoint) {
         logger.info("Registering command: {}", joinPoint.target.javaClass.simpleName)
     }

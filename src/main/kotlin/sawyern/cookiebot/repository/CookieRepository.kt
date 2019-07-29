@@ -7,5 +7,4 @@ import java.util.*
 interface CookieRepository: JpaRepository<Cookie, String> {
     fun findByAccountDiscordId(discordId: String): Collection<Cookie>
     fun findByAccountDiscordIdAndSeason(discordId: String, season: String): Collection<Cookie>
-    fun findByAccountDiscordIdAndTypeAndSeason(discordId: String, type: String, season: String): Collection<Cookie>
 }
