@@ -13,7 +13,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories
 @EnableConfigurationProperties
 @EnableJpaRepositories
 class CookiebotApplication
-
 fun main(args: Array<String>) {
 	runApplication<CookiebotApplication>(*args)
 }
