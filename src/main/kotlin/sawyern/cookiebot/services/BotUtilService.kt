@@ -21,7 +21,7 @@ class BotUtilService @Autowired constructor(@Lazy private val discordService: Di
     private val logger: Logger = LoggerFactory.getLogger(BotUtilService::class.java)
 
     fun sendMessage(message: String): Message? {
-        logger.debug("Sending message: \"$message\"")
+        logger.info("Sending message: \"$message\"")
         return discordService.getBotChannel().createMessage(message).block()
     }
 

@@ -60,6 +60,7 @@ abstract class MessageCreateEventBotCommand  @Autowired constructor(
         } catch (e: Exception) {
             // log unknown exceptions
             logger.error(e.message, e)
+            botUtilService.sendMessage(event, "An unexpected error occurred. Contact an admin to check the logs for details.")
         }
     }
 

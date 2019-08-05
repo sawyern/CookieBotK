@@ -20,6 +20,7 @@ class CommandConstants {
 
     object CommandName {
         val PING = "ping"
+        val HELP = "help"
         val REGISTER = "register"
         val COOKIES = "cookies"
         val UNKNOWN = "unknown"

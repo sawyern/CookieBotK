@@ -9,10 +9,10 @@ import sawyern.cookiebot.repository.CookieRepository
 
 @Service
 class CookieService @Autowired constructor(
-        val cookieRepository: CookieRepository,
-        val seasonService: SeasonService,
+        private val cookieRepository: CookieRepository,
+        private val seasonService: SeasonService,
         @Lazy
-        val accountService: AccountService
+        private val accountService: AccountService
 
 ) {
     fun giveCookieTo(senderId: String, receiverId: String, numCookies: Int) {
@@ -40,7 +40,7 @@ class CookieService @Autowired constructor(
         return cookieRepository.findByAccountDiscordIdAndSeason(discordId, season).size
     }
 
-    fun generateCookie(discordId: String, source: String = "Unknown", numCookies: Int = 1) {
+    fun generateCookie(discordId: String, numCookies: Int = 1, source: String = "Unknown") {
         val account = accountService.getAccount(discordId)
 
         for(i in 1..numCookies) {

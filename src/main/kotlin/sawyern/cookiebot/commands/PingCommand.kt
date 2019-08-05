@@ -14,7 +14,7 @@ class PingCommand @Autowired constructor(
 ) : MessageCreateEventBotCommand(botUtilService)
 {
     override fun getCommand(): String = CommandConstants.CommandName.PING
-    override fun getHelpText(): String = "Test is the server is online and check the version"
+    override fun getHelpText(): String = "Checks if the server is online and returns the version"
 
     override fun execute(event: MessageCreateEvent, args: List<String>) {
         botUtilService.sendMessage(event, "pong! v ${appProperties.version}")
