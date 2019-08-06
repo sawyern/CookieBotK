@@ -2,15 +2,22 @@ package sawyern.cookiebot.constants
 
 class Constants {
     companion object {
-        val SEASON_ACTIVE: String = "Active"
-        val SEASON_INACTIVE: String = "Inactive"
+
+        const val SEASON_ACTIVE: String = "Active"
+        const val SEASON_INACTIVE: String = "Inactive"
+    }
+
+    object Time {
+        const val TIME_ZONE_EST = "America/New_York"
+        const val RESET_TIME = "0 0 20 ? * MON"
     }
 
     object Cookie {
-        val STARTING_COOKIES: Int = 10
+        const val STARTING_COOKIES: Int = 10
+        const val WEEKLY_LOOTBOXES: Int = 3
     }
 
     object Source {
-        val STARTING_COOKIES: String = "Starting Cookie"
+        const val STARTING_COOKIES: String = "Starting Cookie"
     }
 }

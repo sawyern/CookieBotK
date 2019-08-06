@@ -5,5 +5,5 @@ import sawyern.cookiebot.models.Season
 import java.util.*
 
 interface SeasonRepository: JpaRepository<Season, String> {
-    fun findByStatus(status: String): Optional<Season>
+    fun findByStatus(status: String): Season?
 }

@@ -20,6 +20,6 @@ class SeasonCommand @Autowired constructor(
     }
 
     override fun execute(event: MessageCreateEvent, args: List<String>) {
-        botUtilService.sendMessage("Current season is: ${seasonService.getCurrentSeason()}")
+        botUtilService.sendMessage("Current season is: ${seasonService.getCurrentSeason().name}")
     }
 }

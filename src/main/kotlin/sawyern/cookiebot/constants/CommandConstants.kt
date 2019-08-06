@@ -4,25 +4,25 @@ import java.util.*
 
 class CommandConstants {
     companion object {
-        val COMMAND_START = "!"
-        val SPACE = " "
+        const val COMMAND_START = "!"
+        const val SPACE = " "
 
         val RANDOM = Random()
 
-        val COMMAND_DELIM = " "
+        const val COMMAND_DELIM = " "
 
-        val QUOTE = "\""
-        val EMPTY_STRING = ""
+        const val QUOTE = "\""
+        const val EMPTY_STRING = ""
 
-        val QUOTE_REGEX = "([^\"]\\S*|\".+?\")\\s*"
-        val DICE = "\uD83C\uDFB2"
+        const val QUOTE_REGEX = "([^\"]\\S*|\".+?\")\\s*"
+        const val DICE = "\uD83C\uDFB2"
     }
 
     object CommandName {
-        val PING = "ping"
-        val HELP = "help"
-        val REGISTER = "register"
-        val COOKIES = "cookies"
-        val UNKNOWN = "unknown"
+        const val PING = "ping"
+        const val HELP = "help"
+        const val REGISTER = "register"
+        const val COOKIES = "cookies"
+        const val UNKNOWN = "unknown"
     }
 }

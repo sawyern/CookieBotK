@@ -1,10 +1,13 @@
 package sawyern.cookiebot.services
 
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Lazy
 import org.springframework.stereotype.Service
 import sawyern.cookiebot.exception.CookieException
 import sawyern.cookiebot.models.Cookie
+import sawyern.cookiebot.models.Season
 import sawyern.cookiebot.repository.CookieRepository
 
 @Service
@@ -15,6 +18,8 @@ class CookieService @Autowired constructor(
         private val accountService: AccountService
 
 ) {
+    private val logger: Logger = LoggerFactory.getLogger(CookieService::class.java)
+    
     fun giveCookieTo(senderId: String, receiverId: String, numCookies: Int) {
         if (numCookies <= 0)
             throw CookieException("Invalid number of cookies: $numCookies")
@@ -34,18 +39,25 @@ class CookieService @Autowired constructor(
             if (cookiesGiven == numCookies)
                 break
         }
+
+        if (logger.isInfoEnabled) {
+            val senderAccount = accountService.getAccount(senderId)
+            logger.info("Transferred $numCookies cookies from ${senderAccount.username} to ${receiverAccount.username}")
+        }
     }
 
-    fun getCookiesForAccount(discordId: String, season: String = seasonService.getCurrentSeason()): Int {
+    fun getCookiesForAccount(discordId: String, season: Season = seasonService.getCurrentSeason()): Int {
         return cookieRepository.findByAccountDiscordIdAndSeason(discordId, season).size
     }
 
-    fun generateCookie(discordId: String, numCookies: Int = 1, source: String = "Unknown") {
+    fun generateCookie(discordId: String, numCookies: Int = 1) {
         val account = accountService.getAccount(discordId)
 
         for(i in 1..numCookies) {
-            val cookie = Cookie(account, seasonService.getCurrentSeason(), source)
+            val cookie = Cookie(account, seasonService.getCurrentSeason())
             cookieRepository.save(cookie)
         }
+
+        logger.info("Generated $numCookies cookies for ${account.username}")
     }
 }

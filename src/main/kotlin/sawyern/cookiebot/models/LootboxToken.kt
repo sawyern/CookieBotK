@@ -3,8 +3,8 @@ package sawyern.cookiebot.models
 import javax.persistence.*
 
 @Entity
-@Table(name = "COOKIES")
-data class Cookie(
+@Table(name = "TOKENS")
+data class LootboxToken(
     @ManyToOne
     @JoinColumn(name = "ACCOUNT_ID")
     var account: Account,

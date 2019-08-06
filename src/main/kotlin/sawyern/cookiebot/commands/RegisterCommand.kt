@@ -27,7 +27,7 @@ class RegisterCommand @Autowired constructor(
         val member = botUtilService.getMember(event)
 
         accountService.registerAccount(member.id.asString(), member.username)
-        cookieService.generateCookie(member.id.asString(), Constants.Cookie.STARTING_COOKIES, Constants.Source.STARTING_COOKIES)
+        cookieService.generateCookie(member.id.asString(), Constants.Cookie.STARTING_COOKIES)
 
         botUtilService.sendMessage(event, "Successfully registered " + member.username)
     }

@@ -10,8 +10,8 @@ abstract class DbItem (
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "org.hibernate.id.UUIDGenerator", parameters = [Parameter(name = "uuid_gen_strategy_class", value = "org.hibernate.id.uuid.CustomVersionOneStrategy")])
-    private var id: String? = null,
+    var id: String? = null,
 
     @Column
-    private var createDate: LocalDateTime = LocalDateTime.now()
+    var createDate: LocalDateTime = LocalDateTime.now()
 )
